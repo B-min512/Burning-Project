@@ -68,7 +68,7 @@ public class Joystick_Controller : MonoBehaviour
         }
     }
 
-    public void Drop()
+    public void Drop() 
     {
         joyVec = Vector3.zero;
         bGStick.transform.position = joyStickFirstPosition;
