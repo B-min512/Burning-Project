@@ -37,17 +37,32 @@ public class Joystick_Controller : MonoBehaviour
 
     public bool isPlayerMoving = false;
 
+    // --------------------------------------------------
+    // ----- Start
     void Start()
     {
         stickRadius = bGStick.gameObject.GetComponent<RectTransform>().sizeDelta.y / 2;
         joyStickFirstPosition = bGStick.transform.position;
     }
 
+
+    // --------------------------------------------------
+    // ----- Event
     public void PointDown()
     {
         bGStick.transform.position = Input.mousePosition;
         smallStick.transform.position = Input.mousePosition;
         stickFirstPosition = Input.mousePosition;
+
+        if (!Character_Controller.Instance.Anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        {
+            Character_Controller.Instance.Anim.SetBool("Attack", false);
+            Character_Controller.Instance.Anim.SetBool("Idle", false);
+            Character_Controller.Instance.Anim.SetBool("Walk", true);
+        }
+
+        isPlayerMoving = true;
+        PlayerTargetting.Instance.getATarget = false;
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -73,6 +88,14 @@ public class Joystick_Controller : MonoBehaviour
         joyVec = Vector3.zero;
         bGStick.transform.position = joyStickFirstPosition;
         smallStick.transform.position = joyStickFirstPosition;
-    }
 
+        if (!Character_Controller.Instance.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            Character_Controller.Instance.Anim.SetBool("Attack", false);
+            Character_Controller.Instance.Anim.SetBool("Walk", false);
+            Character_Controller.Instance.Anim.SetBool("Idle", true);
+        }
+
+        isPlayerMoving = false;
+    }
 }

@@ -24,8 +24,8 @@ public class RoomCondition : MonoBehaviour
         }
         if (other.CompareTag("Monster"))
         {
-            MonsterListInRoom.Add(other.transform.parent.gameObject);
-            Debug.Log(" Mob name : " + other.transform.parent.gameObject);
+            MonsterListInRoom.Add(other.transform.gameObject);
+            Debug.Log(" Mob name : " + other.transform.gameObject);
         }
     }
 
