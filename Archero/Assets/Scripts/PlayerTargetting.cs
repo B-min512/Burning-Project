@@ -67,7 +67,7 @@ public class PlayerTargetting : MonoBehaviour
         AtkTarget();
     }
 
-    void Attack()
+    public void Attack()
     {
         Character_Controller.Instance.Anim.SetFloat("AttackSpeed", atkSpd);
         Instantiate(PlayerBolt, AttackPoint.position, transform.rotation);
