@@ -62,5 +62,17 @@ public class Character_Controller : MonoBehaviour
             Debug.Log(" Get Next Room ");
             StageManager.Instance.NextStage();
         }
+
+        if (other.transform.CompareTag("MeleeAtk"))
+        {
+            other.transform.parent.GetComponent<EnemyDuck>().meleeAtkArea.SetActive(false);
+            //PlayerHpBar.Instance.currentHp -= other.transform.parent.GetComponent<EnemyDuck>().damage * 2f;
+
+            if (!Anim.GetCurrentAnimatorStateInfo(0).IsName("Dmg"))
+            {
+                Anim.SetTrigger("Damaged");
+                Instantiate(EffectSet.instance.playerDmgEffect, PlayerTargetting.Instance.AttackPoint.position, Quaternion.Euler(90, 0, 0));
+            }
+        }
     }
 }

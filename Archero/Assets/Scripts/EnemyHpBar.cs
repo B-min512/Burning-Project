@@ -15,7 +15,7 @@ public class EnemyHpBar : MonoBehaviour
     public float currentHp;
 
     public GameObject HpLineFolder;
-    float unitHp = 200f;
+    //float unitHp = 200f;
 
     private void Start()
     {

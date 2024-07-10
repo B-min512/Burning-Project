@@ -20,16 +20,67 @@ public class EnemyBase : MonoBehaviour
     protected float moveSpeed = 2f;
 
     protected GameObject player;
-    protected NavMeshAgent mna;
+    protected NavMeshAgent nma;
+    protected float distance;
 
-    // Start is called before the first frame update
-    void Start()
+    protected GameObject parentRoom;
+
+    protected Animator anim;
+    protected Rigidbody rb;
+
+    public LayerMask layerMask;
+
+    protected void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        nma = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+
+        parentRoom = transform.parent.transform.parent.gameObject;
+
+        StartCoroutine(CalcCoolTime());
     }
 
-    // Update is called once per frame
-    void Update()
+    protected bool CanAtkStateFun()
+    {
+        Vector3 targetDir = new Vector3(player.transform.position.x - transform.position.x, 0f, player.transform.position.z - transform.position.z);
+
+        Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, out RaycastHit hit, 30f, layerMask);
+        distance = Vector3.Distance(player.transform.position, transform.position);
+
+        if (hit.transform == null)
+        {
+            return false;
+        }
+
+        if (hit.transform.CompareTag("Player") && distance <= attackRange)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    protected virtual IEnumerator CalcCoolTime()
+    {
+        while (true)
+        {
+            yield return null;
+            if (!canAtk)
+            {
+                attackCoolTimeCacl -= Time.deltaTime;
+                if (attackCoolTimeCacl <= 0)
+                {
+                    attackCoolTimeCacl = attackCoolTime;
+                    canAtk = true;
+                }
+            }
+        }
+    }
+
+    protected void Update()
     {
         
     }
