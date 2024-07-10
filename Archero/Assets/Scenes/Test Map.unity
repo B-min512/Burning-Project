@@ -27784,10 +27784,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e603fb31bcc96e444b594c4a2e59c184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAtkEffect: {fileID: 0}
-  playerDmgEffect: {fileID: 0}
-  duckAtkEffect: {fileID: 0}
-  duckDmgEffect: {fileID: 0}
+  playerAtkEffect: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  playerDmgEffect: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  duckAtkEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+  duckDmgEffect: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
 --- !u!4 &1684896807
 Transform:
   m_ObjectHideFlags: 0
